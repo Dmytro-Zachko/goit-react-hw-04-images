@@ -20,16 +20,16 @@ const {link, alt} = image
      return () => {
         window.removeEventListener('keydown', handleKeyDown);
     };
-  }),[])
+  }),[onClose])
 
 
-  const handleBackdropClick = event => {
+  const  handleBackdropClick = event => {
     const { target, currentTarget } = event;
 
-    if (target.value  === currentTarget.value) {
-     onClose();
+    if (target.value === currentTarget.value) {
+      onClose();
     }
-  };
+  }
 
   return createPortal(
       <Overlay onClick={handleBackdropClick}>
