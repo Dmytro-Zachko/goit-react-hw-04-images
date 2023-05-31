@@ -5,17 +5,13 @@ import { SearchBar, SearchBarButton,SearchBarForm,SearchBarInput } from "./Searc
 import { MdImageSearch } from 'react-icons/md';
 
 export const Searchbar = ({onSubmit}) =>  {
-const [inputValue,setInputValue] = useState('')
+ const [inputValue, setInputValue] = useState('');
 
-  Searchbar.propTypes = {
-    onSubmit: PropTypes.func.isRequired,
+  const handleInputChange = event => {
+    setInputValue( event.currentTarget.value.toLowerCase());
   };
 
- const handleInputChange = event => {
-   setInputValue(event.currentTarget.value.toLowerCase());
-  };
-
-const handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault();
 
     if (inputValue.trim() === '') {
@@ -24,11 +20,6 @@ const handleSubmit = event => {
     }
 
     onSubmit(inputValue);
-
-  resetForm();
-  };
-
-  const resetForm = () => {
     setInputValue('');
   };
   
@@ -41,14 +32,18 @@ const handleSubmit = event => {
 
     <SearchBarInput
             onChange={handleInputChange}
-            value={inputValue}
-            name="inputValue"
-            type="text"
-            autoComplete="off"
-            autoFocus
-            placeholder="Search images and photos"
+          value={inputValue}
+          name="inputValue"
+          type="text"
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
     />
   </SearchBarForm>
             </SearchBar>
         )
-    }
+}
+    
+Searchbar.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
